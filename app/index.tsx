@@ -1,32 +1,13 @@
-import { useCommitments } from "@/src/hooks/useCommitment";
-import * as Sentry from "@sentry/react-native";
+import Auth from "@/src/infra/auth/auth";
 import { defaultConfig } from "@tamagui/config/v5";
-import { Button, createTamagui, TamaguiProvider, Text, View } from "tamagui";
+import { createTamagui, TamaguiProvider } from "tamagui";
 
 const config = createTamagui(defaultConfig);
 
 export default function Index() {
-  const { data } = useCommitments();
   return (
     <TamaguiProvider config={config} defaultTheme="light">
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>
-          {data?.data ? `${data.data.length} commitments` : "Loading..."}
-        </Text>
-        <Button
-          onPress={() => {
-            Sentry.captureException(new Error("First error"));
-          }}
-        >
-          Try!
-        </Button>
-      </View>
+      <Auth />
     </TamaguiProvider>
   );
 }

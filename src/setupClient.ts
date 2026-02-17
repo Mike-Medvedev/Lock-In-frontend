@@ -1,9 +1,17 @@
 import { createClient } from "@supabase/supabase-js";
 import { client } from "./client/client.gen";
 
-const supabase = createClient(
+export const supabase = createClient(
   process.env.EXPO_PUBLIC_SUPABASE_PROJECT_URL ?? "",
   process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? "",
+  {
+    auth: {
+      storage: localStorage,
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: false,
+    },
+  },
 );
 
 client.setConfig({
