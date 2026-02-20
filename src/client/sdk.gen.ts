@@ -3,6 +3,7 @@
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
 import type { DeleteApiV1CommitmentsIdData, DeleteApiV1CommitmentsIdResponses, GetApiV1CommitmentsActiveData, GetApiV1CommitmentsActiveResponses, GetApiV1CommitmentsData, GetApiV1CommitmentsErrors, GetApiV1CommitmentSessionsData, GetApiV1CommitmentSessionsErrors, GetApiV1CommitmentSessionsIdData, GetApiV1CommitmentSessionsIdErrors, GetApiV1CommitmentSessionsIdResponses, GetApiV1CommitmentSessionsIdSamplesData, GetApiV1CommitmentSessionsIdSamplesErrors, GetApiV1CommitmentSessionsIdSamplesResponses, GetApiV1CommitmentSessionsResponses, GetApiV1CommitmentsIdCancelData, GetApiV1CommitmentsIdCancelResponses, GetApiV1CommitmentsIdData, GetApiV1CommitmentsIdErrors, GetApiV1CommitmentsIdProgressData, GetApiV1CommitmentsIdProgressErrors, GetApiV1CommitmentsIdProgressResponses, GetApiV1CommitmentsIdResponses, GetApiV1CommitmentsIdSessionsData, GetApiV1CommitmentsIdSessionsErrors, GetApiV1CommitmentsIdSessionsResponses, GetApiV1CommitmentsResponses, GetApiV1PoolData, GetApiV1PoolErrors, GetApiV1PoolResponses, GetApiV1TransactionsData, GetApiV1TransactionsErrors, GetApiV1TransactionsIdData, GetApiV1TransactionsIdErrors, GetApiV1TransactionsIdResponses, GetApiV1TransactionsResponses, GetUsersData, GetUsersResponses, PatchApiV1CommitmentsIdData, PatchApiV1CommitmentsIdResponses, PostApiV1CommitmentsData, PostApiV1CommitmentSessionsData, PostApiV1CommitmentSessionsErrors, PostApiV1CommitmentSessionsIdCancelData, PostApiV1CommitmentSessionsIdCancelErrors, PostApiV1CommitmentSessionsIdCancelResponses, PostApiV1CommitmentSessionsIdCompleteData, PostApiV1CommitmentSessionsIdCompleteErrors, PostApiV1CommitmentSessionsIdCompleteResponses, PostApiV1CommitmentSessionsIdPauseData, PostApiV1CommitmentSessionsIdPauseErrors, PostApiV1CommitmentSessionsIdPauseResponses, PostApiV1CommitmentSessionsIdResumeData, PostApiV1CommitmentSessionsIdResumeErrors, PostApiV1CommitmentSessionsIdResumeResponses, PostApiV1CommitmentSessionsIdSamplesData, PostApiV1CommitmentSessionsIdSamplesErrors, PostApiV1CommitmentSessionsIdSamplesResponses, PostApiV1CommitmentSessionsIdVerifyData, PostApiV1CommitmentSessionsIdVerifyErrors, PostApiV1CommitmentSessionsIdVerifyResponses, PostApiV1CommitmentSessionsResponses, PostApiV1CommitmentsIdCancelData, PostApiV1CommitmentsIdCancelResponses, PostApiV1CommitmentsResponses, PostApiV1PaymentsConfirmData, PostApiV1PaymentsConfirmErrors, PostApiV1PaymentsConfirmResponses, PostApiV1PaymentsData, PostApiV1PaymentsErrors, PostApiV1PaymentsResponses, PostCronForfeitExpiredData, PostCronForfeitExpiredErrors, PostCronForfeitExpiredResponses, PostWebhookPaymentsData } from './types.gen';
+import { zDeleteApiV1CommitmentsIdData, zDeleteApiV1CommitmentsIdResponse, zGetApiV1CommitmentsActiveData, zGetApiV1CommitmentsActiveResponse, zGetApiV1CommitmentsData, zGetApiV1CommitmentSessionsData, zGetApiV1CommitmentSessionsIdData, zGetApiV1CommitmentSessionsIdResponse, zGetApiV1CommitmentSessionsIdSamplesData, zGetApiV1CommitmentSessionsIdSamplesResponse, zGetApiV1CommitmentSessionsResponse, zGetApiV1CommitmentsIdCancelData, zGetApiV1CommitmentsIdCancelResponse, zGetApiV1CommitmentsIdData, zGetApiV1CommitmentsIdProgressData, zGetApiV1CommitmentsIdProgressResponse, zGetApiV1CommitmentsIdResponse, zGetApiV1CommitmentsIdSessionsData, zGetApiV1CommitmentsIdSessionsResponse, zGetApiV1CommitmentsResponse, zGetApiV1PoolData, zGetApiV1PoolResponse, zGetApiV1TransactionsData, zGetApiV1TransactionsIdData, zGetApiV1TransactionsIdResponse, zGetApiV1TransactionsResponse, zGetUsersData, zGetUsersResponse, zPatchApiV1CommitmentsIdData, zPatchApiV1CommitmentsIdResponse, zPostApiV1CommitmentsData, zPostApiV1CommitmentSessionsData, zPostApiV1CommitmentSessionsIdCancelData, zPostApiV1CommitmentSessionsIdCancelResponse, zPostApiV1CommitmentSessionsIdCompleteData, zPostApiV1CommitmentSessionsIdCompleteResponse, zPostApiV1CommitmentSessionsIdPauseData, zPostApiV1CommitmentSessionsIdPauseResponse, zPostApiV1CommitmentSessionsIdResumeData, zPostApiV1CommitmentSessionsIdResumeResponse, zPostApiV1CommitmentSessionsIdSamplesData, zPostApiV1CommitmentSessionsIdSamplesResponse, zPostApiV1CommitmentSessionsIdVerifyData, zPostApiV1CommitmentSessionsIdVerifyResponse, zPostApiV1CommitmentSessionsResponse, zPostApiV1CommitmentsIdCancelData, zPostApiV1CommitmentsIdCancelResponse, zPostApiV1CommitmentsResponse, zPostApiV1PaymentsConfirmData, zPostApiV1PaymentsConfirmResponse, zPostApiV1PaymentsData, zPostApiV1PaymentsResponse, zPostCronForfeitExpiredData, zPostCronForfeitExpiredResponse, zPostWebhookPaymentsData } from './zod.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -22,6 +23,8 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  * GET /users/
  */
 export const getUsers = <ThrowOnError extends boolean = false>(options?: Options<GetUsersData, ThrowOnError>) => (options?.client ?? client).get<GetUsersResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zGetUsersData.parseAsync(data),
+    responseValidator: async (data) => await zGetUsersResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/users/',
     ...options
@@ -31,6 +34,8 @@ export const getUsers = <ThrowOnError extends boolean = false>(options?: Options
  * List transactions for the authenticated user
  */
 export const getApiV1Transactions = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1TransactionsData, ThrowOnError>) => (options?.client ?? client).get<GetApiV1TransactionsResponses, GetApiV1TransactionsErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1TransactionsData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1TransactionsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/transactions/',
     ...options
@@ -40,6 +45,8 @@ export const getApiV1Transactions = <ThrowOnError extends boolean = false>(optio
  * Get transaction by ID
  */
 export const getApiV1TransactionsId = <ThrowOnError extends boolean = false>(options: Options<GetApiV1TransactionsIdData, ThrowOnError>) => (options.client ?? client).get<GetApiV1TransactionsIdResponses, GetApiV1TransactionsIdErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1TransactionsIdData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1TransactionsIdResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/transactions/:id',
     ...options
@@ -49,6 +56,8 @@ export const getApiV1TransactionsId = <ThrowOnError extends boolean = false>(opt
  * List all commitments
  */
 export const getApiV1Commitments = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1CommitmentsData, ThrowOnError>) => (options?.client ?? client).get<GetApiV1CommitmentsResponses, GetApiV1CommitmentsErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentsData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/',
     ...options
@@ -58,6 +67,8 @@ export const getApiV1Commitments = <ThrowOnError extends boolean = false>(option
  * Create a new commitment
  */
 export const postApiV1Commitments = <ThrowOnError extends boolean = false>(options?: Options<PostApiV1CommitmentsData, ThrowOnError>) => (options?.client ?? client).post<PostApiV1CommitmentsResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentsData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/',
     ...options,
@@ -73,6 +84,8 @@ export const postApiV1Commitments = <ThrowOnError extends boolean = false>(optio
  * Returns all commitments with status 'active' for the authenticated user
  */
 export const getApiV1CommitmentsActive = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1CommitmentsActiveData, ThrowOnError>) => (options?.client ?? client).get<GetApiV1CommitmentsActiveResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentsActiveData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentsActiveResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/active',
     ...options
@@ -82,6 +95,8 @@ export const getApiV1CommitmentsActive = <ThrowOnError extends boolean = false>(
  * Delete a commitment
  */
 export const deleteApiV1CommitmentsId = <ThrowOnError extends boolean = false>(options: Options<DeleteApiV1CommitmentsIdData, ThrowOnError>) => (options.client ?? client).delete<DeleteApiV1CommitmentsIdResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zDeleteApiV1CommitmentsIdData.parseAsync(data),
+    responseValidator: async (data) => await zDeleteApiV1CommitmentsIdResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id',
     ...options
@@ -91,6 +106,8 @@ export const deleteApiV1CommitmentsId = <ThrowOnError extends boolean = false>(o
  * Get commitment by ID
  */
 export const getApiV1CommitmentsId = <ThrowOnError extends boolean = false>(options: Options<GetApiV1CommitmentsIdData, ThrowOnError>) => (options.client ?? client).get<GetApiV1CommitmentsIdResponses, GetApiV1CommitmentsIdErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentsIdData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentsIdResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id',
     ...options
@@ -100,6 +117,8 @@ export const getApiV1CommitmentsId = <ThrowOnError extends boolean = false>(opti
  * Update a commitment
  */
 export const patchApiV1CommitmentsId = <ThrowOnError extends boolean = false>(options: Options<PatchApiV1CommitmentsIdData, ThrowOnError>) => (options.client ?? client).patch<PatchApiV1CommitmentsIdResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zPatchApiV1CommitmentsIdData.parseAsync(data),
+    responseValidator: async (data) => await zPatchApiV1CommitmentsIdResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id',
     ...options,
@@ -115,6 +134,8 @@ export const patchApiV1CommitmentsId = <ThrowOnError extends boolean = false>(op
  * Returns what will happen if the commitment is cancelled (refund or forfeit)
  */
 export const getApiV1CommitmentsIdCancel = <ThrowOnError extends boolean = false>(options: Options<GetApiV1CommitmentsIdCancelData, ThrowOnError>) => (options.client ?? client).get<GetApiV1CommitmentsIdCancelResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentsIdCancelData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentsIdCancelResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id/cancel',
     ...options
@@ -126,6 +147,8 @@ export const getApiV1CommitmentsIdCancel = <ThrowOnError extends boolean = false
  * Cancels the commitment. Refunds if within grace period, forfeits stake if not.
  */
 export const postApiV1CommitmentsIdCancel = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentsIdCancelData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentsIdCancelResponses, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentsIdCancelData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentsIdCancelResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id/cancel',
     ...options
@@ -137,6 +160,8 @@ export const postApiV1CommitmentsIdCancel = <ThrowOnError extends boolean = fals
  * Returns the number of completed/verified sessions, current week, and how many sessions are still needed.
  */
 export const getApiV1CommitmentsIdProgress = <ThrowOnError extends boolean = false>(options: Options<GetApiV1CommitmentsIdProgressData, ThrowOnError>) => (options.client ?? client).get<GetApiV1CommitmentsIdProgressResponses, GetApiV1CommitmentsIdProgressErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentsIdProgressData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentsIdProgressResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id/progress',
     ...options
@@ -148,6 +173,8 @@ export const getApiV1CommitmentsIdProgress = <ThrowOnError extends boolean = fal
  * Returns all sessions (non-cancelled) belonging to a specific commitment.
  */
 export const getApiV1CommitmentsIdSessions = <ThrowOnError extends boolean = false>(options: Options<GetApiV1CommitmentsIdSessionsData, ThrowOnError>) => (options.client ?? client).get<GetApiV1CommitmentsIdSessionsResponses, GetApiV1CommitmentsIdSessionsErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentsIdSessionsData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentsIdSessionsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitments/:id/sessions',
     ...options
@@ -157,6 +184,8 @@ export const getApiV1CommitmentsIdSessions = <ThrowOnError extends boolean = fal
  * List all commitment sessions
  */
 export const getApiV1CommitmentSessions = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1CommitmentSessionsData, ThrowOnError>) => (options?.client ?? client).get<GetApiV1CommitmentSessionsResponses, GetApiV1CommitmentSessionsErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentSessionsData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentSessionsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/',
     ...options
@@ -166,6 +195,8 @@ export const getApiV1CommitmentSessions = <ThrowOnError extends boolean = false>
  * Create a commitment session
  */
 export const postApiV1CommitmentSessions = <ThrowOnError extends boolean = false>(options?: Options<PostApiV1CommitmentSessionsData, ThrowOnError>) => (options?.client ?? client).post<PostApiV1CommitmentSessionsResponses, PostApiV1CommitmentSessionsErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/',
     ...options,
@@ -179,6 +210,8 @@ export const postApiV1CommitmentSessions = <ThrowOnError extends boolean = false
  * Get commitment session by ID
  */
 export const getApiV1CommitmentSessionsId = <ThrowOnError extends boolean = false>(options: Options<GetApiV1CommitmentSessionsIdData, ThrowOnError>) => (options.client ?? client).get<GetApiV1CommitmentSessionsIdResponses, GetApiV1CommitmentSessionsIdErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentSessionsIdData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentSessionsIdResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id',
     ...options
@@ -188,6 +221,8 @@ export const getApiV1CommitmentSessionsId = <ThrowOnError extends boolean = fals
  * Complete a session: ends recording and marks verification as pending
  */
 export const postApiV1CommitmentSessionsIdComplete = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentSessionsIdCompleteData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentSessionsIdCompleteResponses, PostApiV1CommitmentSessionsIdCompleteErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsIdCompleteData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsIdCompleteResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/complete',
     ...options
@@ -197,6 +232,8 @@ export const postApiV1CommitmentSessionsIdComplete = <ThrowOnError extends boole
  * Cancel a session (from in_progress or paused)
  */
 export const postApiV1CommitmentSessionsIdCancel = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentSessionsIdCancelData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentSessionsIdCancelResponses, PostApiV1CommitmentSessionsIdCancelErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsIdCancelData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsIdCancelResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/cancel',
     ...options
@@ -206,6 +243,8 @@ export const postApiV1CommitmentSessionsIdCancel = <ThrowOnError extends boolean
  * Pause a session (only from in_progress)
  */
 export const postApiV1CommitmentSessionsIdPause = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentSessionsIdPauseData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentSessionsIdPauseResponses, PostApiV1CommitmentSessionsIdPauseErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsIdPauseData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsIdPauseResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/pause',
     ...options
@@ -215,6 +254,8 @@ export const postApiV1CommitmentSessionsIdPause = <ThrowOnError extends boolean 
  * Resume a paused session back to in_progress
  */
 export const postApiV1CommitmentSessionsIdResume = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentSessionsIdResumeData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentSessionsIdResumeResponses, PostApiV1CommitmentSessionsIdResumeErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsIdResumeData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsIdResumeResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/resume',
     ...options
@@ -224,6 +265,8 @@ export const postApiV1CommitmentSessionsIdResume = <ThrowOnError extends boolean
  * Submit a commitment session for verification
  */
 export const postApiV1CommitmentSessionsIdVerify = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentSessionsIdVerifyData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentSessionsIdVerifyResponses, PostApiV1CommitmentSessionsIdVerifyErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsIdVerifyData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsIdVerifyResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/verify',
     ...options
@@ -233,6 +276,8 @@ export const postApiV1CommitmentSessionsIdVerify = <ThrowOnError extends boolean
  * Get all samples for a session
  */
 export const getApiV1CommitmentSessionsIdSamples = <ThrowOnError extends boolean = false>(options: Options<GetApiV1CommitmentSessionsIdSamplesData, ThrowOnError>) => (options.client ?? client).get<GetApiV1CommitmentSessionsIdSamplesResponses, GetApiV1CommitmentSessionsIdSamplesErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1CommitmentSessionsIdSamplesData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1CommitmentSessionsIdSamplesResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/samples',
     ...options
@@ -242,6 +287,8 @@ export const getApiV1CommitmentSessionsIdSamples = <ThrowOnError extends boolean
  * Batch upload GPS + motion sensor samples for a live session
  */
 export const postApiV1CommitmentSessionsIdSamples = <ThrowOnError extends boolean = false>(options: Options<PostApiV1CommitmentSessionsIdSamplesData, ThrowOnError>) => (options.client ?? client).post<PostApiV1CommitmentSessionsIdSamplesResponses, PostApiV1CommitmentSessionsIdSamplesErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1CommitmentSessionsIdSamplesData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1CommitmentSessionsIdSamplesResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/commitment-sessions/:id/samples',
     ...options,
@@ -257,6 +304,8 @@ export const postApiV1CommitmentSessionsIdSamples = <ThrowOnError extends boolea
  * Returns the Payment Intent's client secret, the Customer Session's client secret, the Customer's id, and your publishable key.
  */
 export const postApiV1Payments = <ThrowOnError extends boolean = false>(options?: Options<PostApiV1PaymentsData, ThrowOnError>) => (options?.client ?? client).post<PostApiV1PaymentsResponses, PostApiV1PaymentsErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1PaymentsData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1PaymentsResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/payments/',
     ...options,
@@ -272,6 +321,8 @@ export const postApiV1Payments = <ThrowOnError extends boolean = false>(options?
  * Confirms the Payment Intent with the given id. Returns the intent status.
  */
 export const postApiV1PaymentsConfirm = <ThrowOnError extends boolean = false>(options?: Options<PostApiV1PaymentsConfirmData, ThrowOnError>) => (options?.client ?? client).post<PostApiV1PaymentsConfirmResponses, PostApiV1PaymentsConfirmErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostApiV1PaymentsConfirmData.parseAsync(data),
+    responseValidator: async (data) => await zPostApiV1PaymentsConfirmResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/payments/confirm',
     ...options,
@@ -285,6 +336,8 @@ export const postApiV1PaymentsConfirm = <ThrowOnError extends boolean = false>(o
  * Get pool state
  */
 export const getApiV1Pool = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1PoolData, ThrowOnError>) => (options?.client ?? client).get<GetApiV1PoolResponses, GetApiV1PoolErrors, ThrowOnError>({
+    requestValidator: async (data) => await zGetApiV1PoolData.parseAsync(data),
+    responseValidator: async (data) => await zGetApiV1PoolResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/v1/pool/',
     ...options
@@ -294,6 +347,7 @@ export const getApiV1Pool = <ThrowOnError extends boolean = false>(options?: Opt
  * Stripe webhook endpoint for recieving stripe events from stripe
  */
 export const postWebhookPayments = <ThrowOnError extends boolean = false>(options?: Options<PostWebhookPaymentsData, ThrowOnError>) => (options?.client ?? client).post<unknown, unknown, ThrowOnError>({
+    requestValidator: async (data) => await zPostWebhookPaymentsData.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/webhook/payments',
     ...options
@@ -305,6 +359,8 @@ export const postWebhookPayments = <ThrowOnError extends boolean = false>(option
  * Called by Supabase pg_cron at 2am UTC daily. Finds active commitments past their end date with insufficient verified sessions and forfeits them.
  */
 export const postCronForfeitExpired = <ThrowOnError extends boolean = false>(options?: Options<PostCronForfeitExpiredData, ThrowOnError>) => (options?.client ?? client).post<PostCronForfeitExpiredResponses, PostCronForfeitExpiredErrors, ThrowOnError>({
+    requestValidator: async (data) => await zPostCronForfeitExpiredData.parseAsync(data),
+    responseValidator: async (data) => await zPostCronForfeitExpiredResponse.parseAsync(data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/cron/forfeit-expired',
     ...options
